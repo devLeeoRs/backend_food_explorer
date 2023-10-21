@@ -5,8 +5,6 @@ const AppError = require("../utils/AppError");
 function ensureAuthenticated(request, response, next) {
   const authHeader = request.headers;
 
-  console.log(authHeader.cookie);
-
   if (!authHeader.cookie) {
     throw new AppError("JTW token was not informed ");
   }

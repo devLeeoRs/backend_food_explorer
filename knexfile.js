@@ -2,13 +2,9 @@ const path = require("path");
 
 module.exports = {
   development: {
-    client: "pg",
+    client: "sqlite3",
     connection: {
-      database: "food_db",
-      user: "postgres",
-      password: "91617915",
-      host: "localhost",
-      port: 5434,
+      filename: path.resolve(__dirname, "src", "database", "database.db"),
     },
     migrations: {
       directory: path.resolve(
@@ -19,5 +15,28 @@ module.exports = {
         "migrations"
       ),
     },
+    useNullAsDefault: true,
   },
 };
+
+// module.exports = {
+//   development: {
+//     client: "pg",
+//     connection: {
+//       database: "food_db",
+//       user: "postgres",
+//       password: "91617915",
+//       host: "localhost",
+//       port: 5434,
+//     },
+//     migrations: {
+//       directory: path.resolve(
+//         __dirname,
+//         "src",
+//         "database",
+//         "knex",
+//         "migrations"
+//       ),
+//     },
+//   },
+// };

@@ -7,8 +7,6 @@ const userRoute = Router();
 const usersController = new UsersController();
 
 userRoute.post("/", usersController.create);
-userRoute.get("/", ensureAuthenticated, (request, response) => {
-  response.send("ok ");
-});
+userRoute.put("/", ensureAuthenticated, usersController.update);
 
 module.exports = userRoute;
