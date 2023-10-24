@@ -6,12 +6,15 @@ const AppError = require("./utils/AppError");
 const router = require("./routes");
 const cors = require("cors");
 const knex = require("../src/database/knex");
+const uploadConfig = require("./configs/uploadConfig");
 
 // app use
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(router);
+
+app.use("/uploads", express.static(uploadConfig.UPLOADS_FOLDER));
 
 // Exception handling
 app.use((error, request, response, next) => {

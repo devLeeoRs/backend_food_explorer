@@ -27,13 +27,8 @@ class DishesRepository {
     return await knex("dishes").where({ id });
   }
 
-  async update(name, description, price, stock_qtd, dish) {
-    return await knex("dishes").update({
-      name: name ?? dish.name,
-      description: description ?? dish.description,
-      price: price ?? dish.price,
-      stock_qtd: stock_qtd ?? dish.stock_qtd,
-    });
+  async update(dish, id) {
+    return await knex("dishes").where({ id }).update(dish);
   }
 
   async delete(id) {

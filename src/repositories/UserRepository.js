@@ -14,11 +14,11 @@ class UserRepository {
   }
 
   async update(user, id) {
-    await knex("users").where({ id }).update(user);
+    return await knex("users").update(user).where({ id });
   }
 
   async delete(id) {
-    await knex("users").where({ id }).delete();
+    return await knex("users").where({ id }).delete();
   }
 }
 

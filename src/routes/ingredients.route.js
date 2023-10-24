@@ -1,11 +1,17 @@
 const { Router } = require("express");
 const IngredientsController = require("../controllers/Ingredients.Controller");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const roleAuthenticated = require("../middlewares/roleAuthenticated");
 
 const ingredientsRoute = Router();
 const ingredientsController = new IngredientsController();
 
-ingredientsRoute.put("/", ensureAuthenticated, ingredientsController.update);
+ingredientsRoute.use(ensureAuthenticated);
+ingredientsRoute.put(
+  "/",
+  roleAuthenticated(["admin"]),
+  ingredientsController.update
+);
 ingredientsRoute.get(
   "/:dish_id",
   ensureAuthenticated,
@@ -13,7 +19,7 @@ ingredientsRoute.get(
 );
 ingredientsRoute.delete(
   "/:id",
-  ensureAuthenticated,
+  roleAuthenticated(["admin"]),
   ingredientsController.delete
 );
 
