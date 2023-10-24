@@ -1,4 +1,5 @@
-const UserCreateService = require("../services/UserCreateService");
+const UserCreateService = require("../services/usersServices/UserCreateService");
+const UserUpdateService = require("../services/usersServices/UserUpdateService");
 const UserRepository = require("../repositories/UserRepository");
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
@@ -19,37 +20,25 @@ class UsersController {
     const { name, email, password, old_password } = request.body;
     const user_id = request.user.id;
 
-    console.log(name, email, password, old_password);
+    const userRepository = new UserRepository();
+    const userUpdateService = new UserUpdateService(userRepository);
+    await userUpdateService.execute(
+      name,
+      email,
+      password,
+      old_password,
+      user_id
+    );
 
-    const user = await knex("users").where({ id: user_id });
+    response.json({ message: "user updated successfully" });
+  }
 
-    if (!user) {
-      throw new AppError("usuario nao encontrado");
-    }
+  async delete(request, response) {
+    const { id } = request.params;
+    const userRepository = new UserRepository();
+    await userRepository.delete(id);
 
-    const userWithUpdateEmail = await knex("users").where({ email });
-
-    if (userWithUpdateEmail || userWithUpdateEmail.id !== user.id) {
-      throw new AppError("email ja esta em uso !");
-    }
-
-    user.email = email ?? user.email;
-    user.name = name ?? user.name;
-
-    if (password && old_password) {
-      const checkIsPassword = await compare(password, old_password);
-
-      if (checkIsPassword) {
-        throw new AppError("Senha antiga é invalida ");
-      }
-
-      user.password = await hash(password, 8);
-    }
-
-    console.log("chego aqui");
-    await knex("users").where({ id: user.id }).update({ user });
-
-    response.json({ message: "user atualizado com sucesso " });
+    response.json({ message: "user delete successfully" });
   }
 }
 

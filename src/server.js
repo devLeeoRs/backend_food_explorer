@@ -5,6 +5,7 @@ const express = require("express");
 const AppError = require("./utils/AppError");
 const router = require("./routes");
 const cors = require("cors");
+const knex = require("../src/database/knex");
 
 // app use
 const app = express();
@@ -27,9 +28,21 @@ app.use((error, request, response, next) => {
   });
 });
 
+async function testDb() {
+  const [test] = await knex("users");
+
+  if (!test) {
+    console.log("❌ error connecting to database");
+  }
+
+  console.log("📂 connected database");
+}
+
+testDb();
+
 // server startup
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log("🚀 Server is running" + PORT);
+  console.log("🚀 Server is running");
 });
