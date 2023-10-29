@@ -28,8 +28,6 @@ class UserUploadService {
 
     await this.userRepository.update(user, user_id);
 
-    console.log(user);
-
     return user;
   }
 }
