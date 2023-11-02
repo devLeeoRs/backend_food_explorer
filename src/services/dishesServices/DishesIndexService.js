@@ -5,13 +5,9 @@ class DishesIndexService {
     this.DishesRepository = DishesRepository;
   }
 
-  async execute(search) {
+  async execute(search, category) {
     const filterByDishAndIngredients =
-      await this.DishesRepository.findByDishAndIngredients(search);
-
-    if (filterByDishAndIngredients.length === 0) {
-      throw new AppError("❌ no dishes found");
-    }
+      await this.DishesRepository.findByDishAndIngredients(search, category);
 
     return filterByDishAndIngredients;
   }

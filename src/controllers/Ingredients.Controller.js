@@ -5,14 +5,14 @@ const IngredientUpdateServices = require("../services/ingredientsServices/ingred
 
 class ingredientsController {
   async update(request, response) {
-    const { updateIngredients } = request.body;
+    const { updateIngredients, dish_id } = request.body;
 
     const ingredientsRepository = new IngredientsRepository();
     const ingredientUpdateServices = new IngredientUpdateServices(
       ingredientsRepository
     );
 
-    await ingredientUpdateServices.execute(updateIngredients);
+    await ingredientUpdateServices.execute(updateIngredients, dish_id);
 
     response.json({ message: "ingredient updated successfully" });
   }

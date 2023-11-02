@@ -12,7 +12,7 @@ class DishesController {
 
     const dishesRepository = new DishesRepository();
     const dishesCreateService = new DishesCreateService(dishesRepository);
-    await dishesCreateService.execute(
+    const dish = await dishesCreateService.execute(
       name,
       description,
       price,
@@ -22,16 +22,23 @@ class DishesController {
       user_id
     );
 
-    response.json("✅ dish created successfully");
+    response.json(dish);
   }
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, description, price, stock_qtd } = request.body;
+    const { name, description, price, stock_qtd, ingredients } = request.body;
 
     const dishesRepository = new DishesRepository();
     const dishesUpdateService = new DishesUpdateService(dishesRepository);
-    await dishesUpdateService.execute(name, description, price, stock_qtd, id);
+    await dishesUpdateService.execute(
+      name,
+      description,
+      price,
+      stock_qtd,
+      id,
+      ingredients
+    );
 
     response.json("✅ dish updated successfully");
   }
@@ -46,11 +53,14 @@ class DishesController {
   }
 
   async index(request, response) {
-    const { search } = request.body;
+    const { category, search } = request.params;
 
     const dishesRepository = new DishesRepository();
     const dishesIndexService = new DishesIndexService(dishesRepository);
-    const filterByDishAndIngredients = await dishesIndexService.execute(search);
+    const filterByDishAndIngredients = await dishesIndexService.execute(
+      search,
+      category
+    );
 
     response.json(filterByDishAndIngredients);
   }
@@ -58,10 +68,18 @@ class DishesController {
   async show(request, response) {
     const { id } = request.params;
 
-    const dish = await knex("dishes").where({ id });
-    const ingredients = await knex("ingredients").where({ dish_id: id });
-
-    response.json({ dish, ingredients });
+    const [dish] = await knex("dishes").where({ id });
+    const ingredients = await knex("ingredients")
+      .where({ dish_id: id })
+      .pluck("name");
+    const [category] = await knex("category")
+      .where({ dish_id: id })
+      .pluck("name");
+    response.json({
+      ...dish,
+      ingredients,
+      category,
+    });
   }
 }
 

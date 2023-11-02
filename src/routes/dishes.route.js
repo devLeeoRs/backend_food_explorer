@@ -17,7 +17,11 @@ dishesRoute.delete(
   roleAuthenticated(["admin"]),
   dishesController.delete
 );
-dishesRoute.get("/", ensureAuthenticated, dishesController.index);
-dishesRoute.get("/:id", ensureAuthenticated, dishesController.show);
+dishesRoute.get("/dish/:id", ensureAuthenticated, dishesController.show);
+dishesRoute.get(
+  "/:category?/:search?",
+  ensureAuthenticated,
+  dishesController.index
+);
 
 module.exports = dishesRoute;

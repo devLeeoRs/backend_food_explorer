@@ -35,6 +35,13 @@ class DishesCreateService {
     if (category) {
       await this.dishesRepository.insertCategory(user_id, dish_id, category);
     }
+
+    return {
+      name,
+      price,
+      description,
+      dish_id,
+    };
   }
 }
 
