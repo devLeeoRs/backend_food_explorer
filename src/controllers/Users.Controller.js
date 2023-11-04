@@ -17,7 +17,20 @@ class UsersController {
   }
 
   async update(request, response) {
-    const { name, email, password, old_password } = request.body;
+    const {
+      name,
+      email,
+      password,
+      old_password,
+      phone,
+      cpf,
+      birth_date,
+      address,
+      address_number,
+      address_area,
+      city,
+      zip_code,
+    } = request.body;
     const user_id = request.user.id;
 
     const userRepository = new UserRepository();
@@ -27,7 +40,15 @@ class UsersController {
       email,
       password,
       old_password,
-      user_id
+      user_id,
+      phone,
+      cpf,
+      birth_date,
+      address,
+      address_number,
+      address_area,
+      city,
+      zip_code
     );
 
     response.json({ message: "user updated successfully" });

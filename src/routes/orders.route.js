@@ -9,6 +9,7 @@ const ordersController = new OrdersController();
 ordersRoute.use(ensureAuthenticated);
 ordersRoute.post("/", ordersController.create);
 ordersRoute.put("/", roleAuthenticated(["admin"]), ordersController.update);
-ordersRoute.get("/", ordersController.index);
+ordersRoute.get("/all", ordersController.index);
+ordersRoute.get("/", ordersController.show);
 
 module.exports = ordersRoute;

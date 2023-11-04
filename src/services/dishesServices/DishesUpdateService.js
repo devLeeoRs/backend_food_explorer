@@ -24,7 +24,7 @@ class DishesUpdateService {
         };
       });
 
-      console.log(updateIngredient);
+
 
       try {
         await knex("ingredients").insert(updateIngredient);

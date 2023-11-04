@@ -6,7 +6,21 @@ class UserCreateService {
     this.userRepository = UserRepository;
   }
 
-  async execute(name, email, password, old_password, user_id) {
+  async execute(
+    name,
+    email,
+    password,
+    old_password,
+    user_id,
+    phone,
+    cpf,
+    birth_date,
+    address,
+    address_number,
+    address_area,
+    city,
+    zip_code
+  ) {
     const [user] = await this.userRepository.findById(user_id);
 
     if (!user) {
@@ -31,6 +45,23 @@ class UserCreateService {
 
       user.password = await hash(password, 8);
     }
+
+    if (cpf) {
+      const [userWithUpdateCpf] = await this.userRepository.findByCpf(cpf);
+      if (userWithUpdateCpf && userWithUpdateCpf.cpf !== user.cpf) {
+        throw new AppError("Cpf ja cadastrado");
+      }
+    }
+
+    user.cpf = cpf;
+    user.birth_date = birth_date;
+    user.phone = phone;
+    user.address = address;
+    user.birth_date = birth_date;
+    user.address_number = address_number;
+    user.address_area = address_area;
+    user.city = city;
+    user.zip_code = zip_code;
 
     await this.userRepository.update(user, user_id);
   }

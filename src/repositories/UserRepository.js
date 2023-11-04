@@ -5,6 +5,10 @@ class UserRepository {
     return await knex("users").where({ email });
   }
 
+  async findByCpf(cpf) {
+    return await knex("users").where({ cpf });
+  }
+
   async userCreate(name, email, password) {
     return await knex("users").insert({ name, email, password });
   }

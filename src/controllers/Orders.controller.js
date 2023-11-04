@@ -48,10 +48,19 @@ class OrdersController {
 
     response.json({ message: "success" });
   }
-  async index(request, response) {
+  async show(request, response) {
     const user_id = request.user.id;
 
     const order = await knex("orders").where({ user_id }).orderBy("id");
+
+    if (!order) {
+      throw new AppError("Nenhuma pedido encontrado");
+    }
+
+    response.json(order);
+  }
+  async index(request, response) {
+    const order = await knex("orders").orderBy("id");
 
     if (!order) {
       throw new AppError("Nenhuma pedido encontrado");
