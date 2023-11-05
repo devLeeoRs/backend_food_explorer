@@ -27,6 +27,8 @@ class SessionsController {
       expiresIn,
     });
 
+    console.log(token);
+
     response.cookie("token", token, {
       httpOnly: true,
       sameSite: "none",
