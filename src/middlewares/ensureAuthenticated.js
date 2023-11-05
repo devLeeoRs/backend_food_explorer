@@ -3,14 +3,13 @@ const authConfig = require("../configs/auth");
 const AppError = require("../utils/AppError");
 
 function ensureAuthenticated(request, response, next) {
-  const authHeader = request.headers;
-  console.log(`cookie do header ${authHeader.cookie}`);
+  const authHeader = request.headers.cookie;
 
-  if (!authHeader.cookie) {
+  if (!authHeader) {
     throw new AppError("JTW token was not informed ");
   }
 
-  const [, token] = authHeader.cookie.split("token=");
+  const [, token] = authHeader.split("token=");
 
   try {
     const { role, sub: user_id } = verify(token, authConfig.jwt.secret);
