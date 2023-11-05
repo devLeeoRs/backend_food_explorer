@@ -30,7 +30,7 @@ class SessionsController {
     console.log(`Token do sessions : ${token}`);
 
     response.cookie("token", token, {
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "none",
       secure: "true",
       maxAge: 65 * 60 * 1000,
