@@ -27,7 +27,7 @@ class SessionsController {
       expiresIn,
     });
 
-    console.log(token);
+    console.log(`Token do sessions : ${token}`);
 
     response.cookie("token", token, {
       httpOnly: true,
