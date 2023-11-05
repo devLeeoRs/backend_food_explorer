@@ -10,7 +10,9 @@ const uploadConfig = require("./configs/uploadConfig");
 
 // app use
 const app = express();
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({ origin: "https://food-explorer-3.netlify.app", credentials: true })
+);
 app.use(express.json());
 app.use(router);
 
