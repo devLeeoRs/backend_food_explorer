@@ -16,6 +16,7 @@ app.use(
       "https://food-explorer-3.netlify.app",
       "https://foodexplorer-frontend-7kvt-o8254tzvi.vercel.app",
       "http://localhost:5173",
+      "https://foodexplorer-frontend-7kvt.vercel.app",
     ],
     credentials: true,
   })
