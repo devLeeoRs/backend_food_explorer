@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "https://food-explorer-3.netlify.app",
-      "hhttps://food-explorer-delivery.vercel.app",
+      "https://food-explorer-delivery.vercel.app",
       "http://localhost:5173",
       ,
     ],
