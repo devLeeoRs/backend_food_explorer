@@ -41,7 +41,7 @@ Siga os passos abaixo para instalar e configurar a aplicação em um ambiente lo
 2. 📂 **Navegue para o diretório do projeto:**
 
    ```bash
-   cd ./Front-foodExplorer
+   cd ./backend_food_explorer
    ```
 
 3. 📦 **Instale as dependências:**
