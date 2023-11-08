@@ -4,7 +4,6 @@ const AppError = require("../utils/AppError");
 class UsersValidatedController {
   async index(request, response) {
     const { user } = request;
-    console.log(user);
 
     const checkUserExists = await knex("users").where({ id: user.id });
 
