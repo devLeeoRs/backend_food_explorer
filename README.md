@@ -1,4 +1,4 @@
-# 🍕 Front End - Food Explore.
+# 🍕 BackEnd - Food Explore.
 
 ## Sobre o Projeto
 
