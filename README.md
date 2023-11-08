@@ -64,15 +64,14 @@ Agora a **Aplicação Food Explorer** está instalada, configurada e em execuç�
 
 Liste as principais tecnologias e bibliotecas que você usou no projeto, como:
 
-- [**@phosphor-icons/react**](https://github.com/phosphor-icons/phosphor-react)
-- [**axios**](https://axios-http.com/)
-- [**jwt-decode**](https://www.npmjs.com/package/jwt-decode)
-- [**react**](https://reactjs.org/)
-- [**react-dom**](https://reactjs.org/)
-- [**react-router-dom**](https://reactrouter.com/web/guides/quick-start)
-- [**react-toastify**](https://fkhadra.github.io/react-toastify/introduction)
-- [**styled-components**](https://styled-components.com/)
-- [**swiper**](https://swiperjs.com/swiper-api)
+- [**sqlite**](https://www.sqlite.org/index.html)
+- [**bcryptjs**](https://www.npmjs.com/package/bcrypt/)
+- [**cors**](https://www.npmjs.com/package/cors)
+- [**express**](https://www.npmjs.com/package/express)
+- [**express-async-errors**](https://www.npmjs.com/package/express-async-errors)
+- [**jsonwebtoken**](https://www.npmjs.com/package/jsonwebtoken)
+- [**knex**](https://www.npmjs.com/package/knex)
+- [**pm2**](https://www.npmjs.com/package/pm2)
 
 ## 🤝 Contribuições
 
