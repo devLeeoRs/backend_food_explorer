@@ -60,6 +60,13 @@ Siga os passos abaixo para instalar e configurar a aplicação em um ambiente lo
 
 Agora a **Aplicação Food Explorer** está instalada, configurada e em execução no seu ambiente local. Você pode começar a usá-la para testes e desenvolvimento.
 
+## Rotas
+
+-Utilize o insominia para testar as rotas 
+
+-Importe o arquivo food_explorer-insominia 
+
+
 ## 💻 Tecnologias Utilizadas
 
 Liste as principais tecnologias e bibliotecas que você usou no projeto, como:
@@ -72,6 +79,10 @@ Liste as principais tecnologias e bibliotecas que você usou no projeto, como:
 - [**jsonwebtoken**](https://www.npmjs.com/package/jsonwebtoken)
 - [**knex**](https://www.npmjs.com/package/knex)
 - [**pm2**](https://www.npmjs.com/package/pm2)
+
+- ## Serviços
+- [**koyeb**](https://www.koyeb.com/)
+
 
 ## 🤝 Contribuições
 
